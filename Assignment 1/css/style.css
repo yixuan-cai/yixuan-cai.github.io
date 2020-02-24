@@ -1,0 +1,46 @@
+
+h1 {
+   font-family: 'Comfortaa', cursive;
+   font-weight: 700;
+   color: #9575CD;
+   font-size: 35px;
+   margin-left: 60px;
+   margin-top: 40px;
+}
+
+.button {
+   font-family: 'Comfortaa', cursive;
+   font-weight: 700;
+   background-color: #CCCCFF;
+   font-size: 16px;
+   border-style: ridge;
+   border: 2px solid #9575CD;
+   color: #9966CC;
+   margin-left: 60px;
+   padding: 10px 20px;
+   display: flex;
+   width: 10%;
+   text-align: center;
+}
+
+p {
+   font-family: 'Comfortaa', cursive;
+   font-size: 15px;
+   font-weight: 400;
+   padding-left: 160px;
+   padding-bottom: 20px;
+   color: #7E57C2;
+}
+
+#statement {
+   margin-left: 525px;
+   margin-top: -400px;
+   color: #004D40;
+   font-size: 15px;
+}
+
+#color {
+   float: right;
+   margin-right: 340px;
+   width: 500px;
+}
