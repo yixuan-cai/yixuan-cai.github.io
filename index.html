@@ -1,91 +1,54 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta charset="utf-8" />
+		<title>DJ Clicking Game</title>
 
-<head>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+      <link href="https://fonts.googleapis.com/css?family=Black+Ops+One&display=swap" rel="stylesheet">
+	</head>
+	<body>
 
-   <title> Color Personality Quiz </title>
-   <meta charset="utf-8">
-   <link rel="stylesheet" href="css/style.css">
-   <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400,500,600,700&display=swap" rel="stylesheet">
-</head>
+		<div id="set">
+			<div id="beginAndStop">
+				<button type="button" onclick="beginGame()">START</button>
+				<button type="button" onclick="stopGame()">END</button>
+				<hr/>
+			</div>
 
-<body>
+			<div id="ranges">
+				<div id="speed" name="ranges">
+					<label>Adjust Fall Speed</label><br>
+					<input type="range" name="speedRange" id="speedRange" onchange="speed(value)"/>
+				</div>
 
+            <p>SLOW&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;FAST</p>
 
+				<hr >
 
+				<div id="num" name="ranges">
+					<label>Adjust Object Quantity</label><br>
+					<input type="range" name="numRange" id="numRange" value="40" onchange="num(value)" step="20"/>
+				</div>
 
-<script>
+            <p>LESS&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;MORE</p>
+				<hr >
 
-function myFunction(param) {
-	value = param
-	console.log(value);
-	img = ['img/red.jpg', 'img/blue.jpg', 'img/yellow.jpg', 'img/orange.jpg','img/green.jpg'];
-	text = '';
+			</div>
 
-	switch(value) {
-		case 0:
-			text = "Energy, Passion, Courage, Attentiont";
-          document.body.style.backgroundColor = '#FFB6C1';
-			break;
-		case 1:
-			text = "Responsibility, Honestly, Loyalty, Loneliness";
-         document.body.style.backgroundColor = '#87CEFA';
-			break;
-		case 2:
-			text = "Oppotunity, Happiness, Positivity, Enthusiasm";
-         document.body.style.backgroundColor = '#F0E68C';
-			break;
-		case 3:
-			text = "Skillfulness, Finesses, Competetive, Impulsive";
-         document.body.style.backgroundColor = 'orange';
-			break;
-		case 4:
-			text = "Knowledgable, Independent thinker, Logically driven";
-         document.body.style.backgroundColor = '#3CB371';
-			break;
-		default:
-			"Pick a color to see what your personality is."
-	}
+			<div id="hit">
+				<label>Total Hits</label><br>
+				<label id="hitNum">0</label>
+			</div>
+		</div>
 
-	document.getElementById("statement").innerHTML= text;
-	document.getElementById("color").src= img[value];
-}
+<div class="object" id="div1" onclick="shoot(id)"></div>
+<div class="object" id="div2" onclick="shoot(id)"></div>
+<div class="object" id="div3" onclick="shoot(id)"></div>
+<div class="object" id="div4" onclick="shoot(id)"></div>
+<div class="object" id="div5" onclick="shoot(id)"></div>
+<div class="object" id="div6" onclick="shoot(id)"></div>
 
-</script>
-
-
-<div id="main">
-
-	<div id="mainbody">
-
-      <h1>COLOR PERSONALITY QUIZ</h1>
-
-
-      <div id="someContent">
-
-      </div>
-
-
-
-		<p>Pick a color to find out your personality</p>
-
-      <button class="button" onclick="myFunction(0)">Red</button><br>
-		<button class="button" onclick="myFunction(1)">Blue</button><br>
-		<button class="button" onclick="myFunction(2)">Yellow</button><br>
-		<button class="button" onclick="myFunction(3)">Orange</button><br>
-		<button class="button" onclick="myFunction(4)">Green</button><br>
-
-	</div>
-
-
-
-	<div id="assessment">
-		<p id="answer"></p>
-		<p id="statement"></p>
-		<img id="color" src="img/color.png" alt="color images">
-	</div>
-
-</div>
-
-</body>
+		<script type="text/javascript" src="js/action.js"></script>
+	</body>
 </html>
