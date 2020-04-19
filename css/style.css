@@ -68,6 +68,10 @@ li {
    margin-left: 300px;
 }
 
+.ui-menu {
+   width: 150px;
+}
+
 #menu {
    background-color: black;
    float: left;
