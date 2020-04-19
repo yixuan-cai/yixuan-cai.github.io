@@ -1,54 +1,250 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8" />
-		<title>DJ Clicking Game</title>
+		<meta heep-equiv="content-type" content="text/html; charset="utf-8" />
+		<title>Music events</title>
 
-		<link rel="stylesheet" type="text/css" href="css/style.css"/>
-      <link href="https://fonts.googleapis.com/css?family=Black+Ops+One&display=swap" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+   <link rel="stylesheet" href="css/style.css">
+
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <link href="https://fonts.googleapis.com/css2?family=Codystar&display=swap" rel="stylesheet">
+
+   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300&display=swap" rel="stylesheet">
 	</head>
+
 	<body>
 
-		<div id="set">
-			<div id="beginAndStop">
-				<button type="button" onclick="beginGame()">START</button>
-				<button type="button" onclick="stopGame()">END</button>
-				<hr/>
-			</div>
 
-			<div id="ranges">
-				<div id="speed" name="ranges">
-					<label>Adjust Fall Speed</label><br>
-					<input type="range" name="speedRange" id="speedRange" onchange="speed(value)"/>
-				</div>
 
-            <p>SLOW&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;FAST</p>
+      <ul id="menu">
 
-				<hr >
+       <li><div>CITY</div>
+       <ul>
+         <li><div><a href="html/newyork.html">New York</div></a></li>
+         <li><div><a href="html/queens.html">Queens</div></li></a>
+         <li><div><a href="html/brooklyn.html">Brooklyn</div></li></a>
+       </ul>
+       </li>
+       <li><div>VENUE</div>
+       <ul>
+         <li><div><a href="html/newyork.html">Big Hall</div></a></li>
+         <li><div><a href="html/brooklyn.html">Little Cafe</div></li></a>
+         <li><div><a href="html/queens.html">Smokey Club</div></li></a>
+       </ul>
+       </li>
+       <li><div>TIME</div>
+       <ul>
+         <li><div><a href="html/8pm.html">8:30pm</div></li></a>
+         <li><div><a href="html/9pm.html">9pm</div></li></a>
+         <li><div><a href="html/10pm.html">10pm Club</div></li></a>
+       </ul>
+       </li>
+       <li><div>PRICE</div>
+       <ul>
+         <li><div><a href="html/30.html">30</div></li></a>
+         <li><div><a href="html/40.html">40</div></li></a>
+         <li><div><a href="html/45.html">45</div></li></a>
+       </ul>
+       </li>
 
-				<div id="num" name="ranges">
-					<label>Adjust Object Quantity</label><br>
-					<input type="range" name="numRange" id="numRange" value="40" onchange="num(value)" step="20"/>
-				</div>
+     </ul>
 
-            <p>LESS&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;MORE</p>
-				<hr >
 
-			</div>
 
-			<div id="hit">
-				<label>Total Hits</label><br>
-				<label id="hitNum">0</label>
-			</div>
-		</div>
 
-<div class="object" id="div1" onclick="shoot(id)"></div>
-<div class="object" id="div2" onclick="shoot(id)"></div>
-<div class="object" id="div3" onclick="shoot(id)"></div>
-<div class="object" id="div4" onclick="shoot(id)"></div>
-<div class="object" id="div5" onclick="shoot(id)"></div>
-<div class="object" id="div6" onclick="shoot(id)"></div>
+   <h1>Big Music Club Conclomerate Music Events</h1>
 
-		<script type="text/javascript" src="js/action.js"></script>
+   <h2>Up Coming Events</h2>
+
+
+   <div class="row">
+
+  <div id="column">
+     <div class="box1">
+    <h3>Shawn Mendes</h3>
+    <img src="img/Shawn Mendes.jpg" alt="[Shawn Mendes]" height=180px;>
+    <p>2020-04-01</p>
+
+
+    <div id="dialog1" title="Event Details">
+      <p>Artist: Shawn Mendes<br>Venue: Big Hall<br>Date: 2020-04-01<br>City: New York<br>State: NY<br>Show time: 21:00<br>Price: 45 USD</p>
+    </div>
+
+    <button id="opener1">More Details</button>
+
+
+</div>
+  </div>
+
+  <div class="box2">
+  <div id="column">
+    <h3>Bjork</h3>
+    <img src="img/Bjork.jpg" alt="[Bjork]" height=180px;>
+    <p>2020-03-28</p>
+
+    <div id="dialog2" title="Event Details">
+      <p>Artist: Bjork <br>Venue: Smokey Club<br>Date: 2020-03-28<br>City: Queens<br>State: NY<br>Show time: 21:00<br>Price: 40 USD</p>
+    </div>
+
+    <button id="opener2">More Details</button>
+
+  </div>
+</div>
+
+
+
+
+<div class="box3">
+  <div id="column">
+    <h3>Madonna</h3>
+    <img src="img/Madonna.jpg" alt="[Madonna]" height=180px;>
+    <p>2020-03-25</p>
+
+    <div id="dialog3" title="Event Details">
+      <p>Artist: Madonna <br>Venue: Little Café <br>Date: 2020-03-25<br>City: Brooklyn <br>State: NY<br>Show time: 20:30<br>Price: 45 USD</p>
+    </div>
+
+    <button id="opener3">More Details</button>
+
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+
+      <div id="content">
+
+
+         <div id="accordion">
+
+  <h3>Big Hall</h3>
+  <div>
+   <img src="img/Big Hall.jpg" width="450px" alt="Big Hall" style="float: left; margin: 3px 12px 3px 0px; border: 1px solid #000000;">
+
+    <p>Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate<br>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.<br>Integer tincidunt. Cras dapibus. </p>
+    <ul>
+      <li>Donec quam felis, ultricies nec</li>
+      <li>Donec quam felis</li>
+      <li>tibus et magnis dis par</li>
+    </ul>
+  </div>
+
+
+  <h3>Smokey Club</h3>
+  <div>
+
+       <img src="img/Smokey Club.jpg" width="450px" height="330px" alt="Big Hall" style="float: left; margin: 3px 12px 3px 0px; border: 1px solid #000000;">
+    <p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna.consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. <br>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.<br> Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. </p>
+    <ul>
+     <li>Aenean imperdiet</li>
+     <li>Detiam rhoncus</li>
+     <li>Quisque rutrum</li>
+     <li>sem quam semper libero</li>
+     <li>consequat vitae</li>
+  </ul>
+  </div>
+
+
+  <h3>Little Café</h3>
+
+  <div>
+          <img src="img/Little Café.jpg" width="450px" height="300px" alt="Big Hall" style="float: left; margin: 3px 12px 3px 0px; border: 1px solid #000000;">
+    <p>Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.<br>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.  </p>
+    <ul>
+      <li>purus in massa</li>
+      <li>leo purus venenatis</li>
+      <li>Sed commodo, magna quis</li>
+    </ul>
+  </div>
+
+</div>
+
+
+<style>
+  .ui-menu { width: 150px; }
+  </style>
+
+      <script>
+
+
+         $( function() {
+     $( "#accordion" ).accordion({
+       collapsible: true
+     });
+   } );
+
+
+      $( function() {
+    $( "#dialog1" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      }
+    });
+
+    $( "#opener1" ).on( "click", function() {
+      $( "#dialog1" ).dialog( "open" );
+    });
+  } );
+
+  $( function() {
+$( "#dialog2" ).dialog({
+ autoOpen: false,
+ show: {
+   effect: "blind",
+   duration: 1000
+ },
+ hide: {
+   effect: "explode",
+   duration: 1000
+ }
+});
+
+$( "#opener2" ).on( "click", function() {
+ $( "#dialog2" ).dialog( "open" );
+});
+} );
+
+$( function() {
+$( "#dialog3" ).dialog({
+autoOpen: false,
+show: {
+ effect: "blind",
+ duration: 1000
+},
+hide: {
+ effect: "explode",
+ duration: 1000
+}
+});
+
+$( "#opener3" ).on( "click", function() {
+$( "#dialog3" ).dialog( "open" );
+});
+} );
+
+
+$( function() {
+    $( "#menu" ).menu();
+  } );
+
+      </script>
+
 	</body>
 </html>
