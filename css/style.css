@@ -79,3 +79,19 @@ li {
    border-color: white;
    border-width: medium;
 }
+
+.button {
+   background-color: yellow;
+   border: black;
+   border-style: dotted;
+   color: white;
+   padding: 7px 20px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   transition-duration: 0.4s;
+   cursor: pointer;
+   margin-left: 700px;
+   font-family: 'Manrope', sans-serif;
+   font-size: 16px;
+}
