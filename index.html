@@ -1,230 +1,355 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta heep-equiv="content-type" content="text/html; charset="utf-8" />
-		<title>Music events</title>
+<html lang="en">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>COVID-19 TRACKER</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/index.css">
 
-   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src='./js/jquery-1.8.3.min.js'></script>
+    <script src='./js/echarts.min.js'></script>
+</head>
 
-   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
-   <link rel="stylesheet" href="css/style.css">
+<body class="conindex">
+    <div class="fn-clear conbox">
+        <div class="total">
+            <p class="tit">TOTAL CASES</p>
+            <div class="btn-group">
+                <div class="btn">
+                    <p class="title">CONFIRMED</p>
+                    <P class="sum confirmed"></P>
+                </div>
+                <div class="btn">
+                    <p class="title">RECORVERED</p>
+                    <P class="sum recorvered"></P>
+                </div>
+                <div class="btn">
+                    <p class="title">DEATHS</p>
+                    <P class="sum deaths"></P>
+                </div>
+            </div>
+        </div>
+        <a href="" class="btns">TOP 10 COUNTRIES WITH MOST CASES</a>
+        <div id="main1"></div>
+        <div class="fn-clear mealbox fn-clear">
+            <div id="maleChart" class="fl"></div>
+            <div id="femaleChart" class="fl"></div>
+        </div>
+        <div id="daily"></div>
+        <div class="c">
+            <a href="./detail.html" class="country">COUNTRY DETAILS</a>
+        </div>
 
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-   <link href="https://fonts.googleapis.com/css2?family=Codystar&display=swap" rel="stylesheet">
-
-   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300&display=swap" rel="stylesheet">
-	</head>
-
-	<body>
-
-      <ul id="menu">
-
-       <li><div>CITY</div>
-       <ul>
-         <li><div><a href="html/newyork.html">New York</div></a></li>
-         <li><div><a href="html/queens.html">Queens</div></li></a>
-         <li><div><a href="html/brooklyn.html">Brooklyn</div></li></a>
-       </ul>
-       </li>
-       <li><div>VENUE</div>
-       <ul>
-         <li><div><a href="html/newyork.html">Big Hall</div></a></li>
-         <li><div><a href="html/brooklyn.html">Little Cafe</div></li></a>
-         <li><div><a href="html/queens.html">Smokey Club</div></li></a>
-       </ul>
-       </li>
-       <li><div>TIME</div>
-       <ul>
-         <li><div><a href="html/8pm.html">8:30pm</div></li></a>
-         <li><div><a href="html/9pm.html">9pm</div></li></a>
-         <li><div><a href="html/10pm.html">10pm Club</div></li></a>
-       </ul>
-       </li>
-       <li><div>PRICE</div>
-       <ul>
-         <li><div><a href="html/30.html">30</div></li></a>
-         <li><div><a href="html/40.html">40</div></li></a>
-         <li><div><a href="html/45.html">45</div></li></a>
-       </ul>
-       </li>
-
-     </ul>
-
-   <h1>Big Music Club Conclomerate Music Events</h1>
-
-   <h2>Up Coming Events</h2>
-
-   <div class="row">
-
-  <div id="column">
-     <div class="box1">
-    <h3>Shawn Mendes</h3>
-    <img src="img/Shawn Mendes.jpg" alt="[Shawn Mendes]" height=180px;>
-    <p>2020-04-01</p>
-
-    <div id="dialog1" title="Event Details">
-      <p>Artist: Shawn Mendes<br>Venue: Big Hall<br>Date: 2020-04-01<br>City: New York<br>State: NY<br>Show time: 21:00<br>Price: 45 USD<br><a href="http://www.shawnmendesofficial.com/" class="w3-button w3-black">Official Website</a></p>
     </div>
+</body>
+<script src="./js/summary.js"></script>
+<script>
+    $(function () {
+        fetch('https://api.covid19api.com/summary').then(response => response.json()) 
+            .then(data => {
+                var data = summary;
 
-    <button id="opener1">More Details</button>
+                var confirmed = (data.Global.TotalConfirmed / 1000000).toFixed(1);
+                var recorvered = (data.Global.TotalRecovered / 1000000).toFixed(1);
+                var deaths = (data.Global.TotalDeaths / 1000).toFixed(1);
+                $('.confirmed').html(confirmed + 'M')
+                $('.recorvered').html(recorvered + 'M')
+                $('.deaths').html(deaths + 'K')
+                var mydata = data.Countries;
+                var condata = mydata.sort(compare('TotalConfirmed'));
+                var result = condata.filter((currentValue, index) => {
+                    return index < 10
+                });
 
-</div>
-  </div>
+                console.log(result);
+                var city = [];
+                var sumdata = [];
+                result.forEach((element, i) => {
+                    city[9 - i] = element.Country
+                });
+                result.forEach((element, i) => {
+                    sumdata[9 - i] = element.TotalConfirmed
+                });
 
-  <div class="box2">
-  <div id="column">
-    <h3>Bjork</h3>
-    <img src="img/Bjork.jpg" alt="[Bjork]" height=180px;>
-    <p>2020-03-28</p>
+                var data1 = {
+                    color: ["#4b6ead"],
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'shadow'
+                        }
+                    },
+                    legend: {
+                        data: ['2020'],
+                        borderColor: '#4b6ead',
+                        bottom: 0,
+                        textStyle: {
+                            color: '#4b6ead'
+                        }
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '10%',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'value',
+                        boundaryGap: [0, 0.01],
+                        axisLine: {
+                            lineStyle: {
+                                color: "#4b6ead",
+                            }
+                        }
+                    },
+                    yAxis: {
+                        type: 'category',
+                        axisLine: {
+                            lineStyle: {
+                                color: "#4b6ead"
+                            }
+                        },
+                        data: city
+                    },
+                    series: [{
+                        name: '2020',
+                        type: 'bar',
+                        data: sumdata,
+                        color: ["#4b6ead"]
+                    }]
+                };
+                var myChart = echarts.init(document.getElementById('main1'));
+                myChart.setOption(data1);
 
-    <div id="dialog2" title="Event Details">
-      <p>Artist: Bjork <br>Venue: Smokey Club<br>Date: 2020-03-28<br>City: Queens<br>State: NY<br>Show time: 21:00<br>Price: 40 USD<br><a href="https://pitchfork.com/artists/363-bjork/" class="w3-button w3-black">Official Website</a></p>
-    </div>
+            })
+            .catch(err => console.log("Oh, error", err))
 
-    <button id="opener2">More Details</button>
+   
+        fetch('https://data.sfgov.org/resource/sunc-2t3k.json').then(response => response.json()) 
+            .then(data => {
+                var maledata = data.filter((val) => val.gender == 'Male')
+                var femaledata = data.filter((val) => val.gender == 'Female')
+                var malegend = [];
+                var maleseries = [];
+                var femalegend = [];
+                var femaleseries = [];
+                maledata.forEach(element => {
+                    malegend.push(element.age_group)
+                });
+                maledata.forEach((element, i) => {
+                    maleseries.push({
+                        value: element.confirmed_cases,
+                        name: element.age_group
+                    })
+                });
+                femaledata.forEach(element => {
+                    femalegend.push(element.age_group)
+                });
+                femaledata.forEach((element, i) => {
+                    femaleseries.push({
+                        value: element.confirmed_cases,
+                        name: element.age_group
+                    })
+                });
+                var maleChartdata = {
+                    title: {
+                        text: 'Male',
+                        left: 'center',
+                        textStyle: {
+                            color: '#4b6ead'
+                        }
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: '{a} <br />{b} : {c} ({d}%)'
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        right: 10,
+                        top: 20,
+                        bottom: 20,
+                        data: malegend,
+                        textStyle: {
+                            color: '#4b6ead'
+                        }
+                    },
+                    series: [{
+                        name: 'confirmed cases',
+                        type: 'pie',
+                        radius: '55%',
+                        center: ['50%', '60%'],
+                        data: maleseries,
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }]
+                };
+                var femaleChartdata = {
+                    title: {
+                        text: 'Female',
+                        left: 'center',
+                        textStyle: {
+                            color: '#4b6ead'
+                        }
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: '{a} <br />{b} : {c} ({d}%)'
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        right: 10,
+                        top: 40,
+                        bottom: 20,
+                        data: femalegend,
+                        textStyle: {
+                            color: '#4b6ead'
+                        }
+                    },
+                    series: [{
+                        name: 'confirmed cases',
+                        type: 'pie',
+                        radius: '55%',
+                        center: ['50%', '60%'],
+                        data: femaleseries,
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }]
+                };
+                var maleChart = echarts.init(document.getElementById('maleChart'));
+                maleChart.setOption(maleChartdata);
+                var femaleChart = echarts.init(document.getElementById('femaleChart'));
+                femaleChart.setOption(femaleChartdata);
 
-  </div>
-</div>
+            })
+            .catch(err => console.log("Oh, error", err))
+     
+       
+            fetch('https://covidtracking.com/api/v1/states/daily.json').then(response => response.json()) 
+            .then(data => {
+                var data = data.sort(compare1('date')).filter((val) => {
+                    return val.state = 'NY' && val.date > 20200401
+                });
+                console.log(data)
+                var legenddata = data.map(function (user) {
+                    return user.state;
+                });
+                legenddata = legenddata.filter((value, index, legenddata) => {
+                    return legenddata.indexOf(value) == index
+                })
+                console.log(legenddata)
+              
+                var datedata = data.map(function (user) {
+                    return user.date;
+                });
+                datedata = datedata.filter((value, index, datedata) => {
+                    return datedata.indexOf(value) == index
+                })
+                var condata = [];
+                legenddata.forEach(element => {
+                    var arr = [];
+                    var mydata = {};
+                    var main = data.filter((val) => {
+                        return val.state == element
+                    })
+                    main.forEach((ele) => {
+                        arr.push(ele.positiveIncrease)
+                    })
+                    mydata.name = element;
+                    mydata.type = 'line';
+                    mydata.stack = 'positiveIncrease';
+                    mydata.smooth = true;
+                    mydata.data = arr;
+                    condata.push(mydata)
+                });
+                var dailydata = {
+                    title: {
+                        text: 'COVID-19 POSITIVE INCREASE RATE IN NEW YORK',
+        
+                        left: 'center',
+                        textStyle: {
+                            color: '#4b6ead'
+                        }
+                    },
+                    grid: {
+                        top: '20%',
+                        left: '3%',
+                        right: '4%',
+                        bottom: '10%',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'category',
+                        axisLabel: {
+                            interval: 0,
+                            rotate: 40
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                color: "#4b6ead"
+                            }
+                        },
+                        data: datedata
+                    },
+                    legend: {
+                        top: 30,
+                        data: legenddata,
+                        textStyle: {
+                            color: '#4b6ead'
+                        }
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisLine: {
+                            lineStyle: {
+                                color: "#4b6ead"
+                            }
+                        },
+                    },
+                    series: condata
+                };
 
-<div class="box3">
-  <div id="column">
-    <h3>Madonna</h3>
-    <img src="img/Madonna.jpg" alt="[Madonna]" height=180px;>
-    <p>2020-03-25</p>
+                var daily = echarts.init(document.getElementById('daily'));
+                daily.setOption(dailydata);
 
-    <div id="dialog3" title="Event Details">
-      <p>Artist: Madonna <br>Venue: Little Café <br>Date: 2020-03-25<br>City: Brooklyn <br>State: NY<br>Show time: 20:30<br>Price: 45 USD<br><a href="https://www.madonna.com/" class="w3-button w3-black">Official Website</a></p>
-    </div>
+            })
+            .catch(err => console.log("Oh, error3", err))
+        function compare(property) {
+            return function (a, b) {
+                var value1 = a[property];
+                var value2 = b[property];
+                return value2 - value1;
+            }
+        }
 
-    <button id="opener3">More Details</button>
+        function compare1(property) {
+            return function (a, b) {
+                var value1 = a[property];
+                var value2 = b[property];
+                return value1 - value2;
+            }
+        }
+ 
+        function qc(array) {
+            array.filter((value, index, arr) => {
+                return arr.indexOf(value) === index
+            })
+        }
 
-  </div>
-</div>
+    })
+</script>
 
-</div>
-
-         <div id="accordion">
-
-  <h3>Big Hall</h3>
-  <div>
-   <img src="img/Big Hall.jpg" width="450px" alt="Big Hall" style="float: left; margin: 3px 12px 3px 0px; border: 1px solid #000000;">
-   <p>(Sorry, No Event Today)</p>
-    <p>Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate<br>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.<br>Integer tincidunt. Cras dapibus. </p>
-    <ul>
-      <li>Donec quam felis, ultricies nec</li>
-      <li>Donec quam felis</li>
-      <li>tibus et magnis dis par</li>
-    </ul>
-    <a href="html/newyork.html" class="button">MORE EVENTS</a>
-  </div>
-
-
-  <h3>Smokey Club</h3>
-  <div>
-
-       <img src="img/Smokey Club.jpg" width="450px" height="330px" alt="Big Hall" style="float: left; margin: 3px 12px 3px 0px; border: 1px solid #000000;">
-       <p>(Sorry, No Event Today)</p>
-    <p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna.consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. <br>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.<br> Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. </p>
-    <ul>
-     <li>Aenean imperdiet</li>
-     <li>Detiam rhoncus</li>
-     <li>Quisque rutrum</li>
-     <li>sem quam semper libero</li>
-     <li>consequat vitae</li>
-  </ul>
-   <a href="html/queens.html" class="button">MORE EVENTS</a>
-  </div>
-
-
-  <h3>Little Café</h3>
-
-  <div>
-          <img src="img/Little Cafe.jpg" width="450px" height="300px" alt="Little cafe" style="float: left; margin: 3px 12px 3px 0px; border: 1px solid #000000;">
-      <p>(Sorry, No Event Today)</p>
-    <p>Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.<br>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.  </p>
-    <ul>
-      <li>purus in massa</li>
-      <li>leo purus venenatis</li>
-      <li>Sed commodo, magna quis</li>
-
-    </ul>
-    <a href="html/brooklyn.html" class="button">MORE EVENTS</a>
-  </div>
-
-</div>
-
-      <script>
-
-         $( function() {
-     $( "#accordion" ).accordion({
-       collapsible: true
-     });
-   } );
-
-      $( function() {
-    $( "#dialog1" ).dialog({
-      autoOpen: false,
-      show: {
-        effect: "blind",
-        duration: 1000
-      },
-      hide: {
-        effect: "explode",
-        duration: 1000
-      }
-    });
-
-    $( "#opener1" ).on( "click", function() {
-      $( "#dialog1" ).dialog( "open" );
-    });
-  } );
-
-  $( function() {
-$( "#dialog2" ).dialog({
- autoOpen: false,
- show: {
-   effect: "blind",
-   duration: 1000
- },
- hide: {
-   effect: "explode",
-   duration: 1000
- }
-});
-
-$( "#opener2" ).on( "click", function() {
- $( "#dialog2" ).dialog( "open" );
-});
-} );
-
-$( function() {
-$( "#dialog3" ).dialog({
-autoOpen: false,
-show: {
- effect: "blind",
- duration: 1000
-},
-hide: {
- effect: "explode",
- duration: 1000
-}
-});
-
-$( "#opener3" ).on( "click", function() {
-$( "#dialog3" ).dialog( "open" );
-});
-} );
-
-
-$( function() {
-    $( "#menu" ).menu();
-  } );
-
-      </script>
-
-	</body>
 </html>

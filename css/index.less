@@ -1,0 +1,195 @@
+@basecolor: #4b6ead;
+
+.conindex {
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    .conbox {
+
+        .total {
+            max-width: 1024px;
+            width: 100%;
+            margin: auto;
+            display: block;
+
+            .tit {
+                font-size: 24px;
+                line-height: 60px;
+                color: @basecolor ;
+                border: 2px solid @basecolor;
+                padding-left: 60px;
+                font-weight: bold;
+            }
+
+            .btn-group {
+                border-right: 2px solid @basecolor;
+                border-bottom: 2px solid @basecolor;
+
+                .btn {
+                    border-left: 2px solid @basecolor;
+
+                    .title {
+                        font-size: 24px;
+                        line-height: 60px;
+                        color: @basecolor;
+                        font-weight: bold;
+                        text-align: center;
+                    }
+
+                    .sum {
+                        font-size: 60px;
+                        color: #fff;
+                        padding-bottom: 30px;
+                        font-weight: bold;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+
+        .btns {
+            height: 100px;
+            border: 2px solid @basecolor;
+            color: @basecolor;
+            line-height: 100px;
+            display: block;
+            text-align: center;
+            margin: 60px auto;
+            max-width: 1024px;
+            font-weight: bold;
+            font-size: 28px;
+        }
+    }
+
+    #main1 {
+        width: 1024px;
+        height: 680px;
+        margin: auto;
+        padding-bottom: 60px;
+    }
+
+    .mealbox {
+        width: 1024px;
+        margin: auto;
+    }
+
+    #maleChart {
+        width: 512px;
+        height: 512px;
+        margin: auto;
+        padding-bottom: 60px;
+    }
+
+    #femaleChart {
+        width: 512px;
+        height: 512px;
+        margin: auto;
+        padding-bottom: 60px;
+    }
+
+    #daily {
+        width: 1024px;
+        height: 680px;
+        margin: auto;
+        padding-bottom: 60px;
+    }
+}
+
+.c {
+    width: 1024px;
+    margin: auto;
+    display: block;
+}
+
+.country {
+    height: 100px;
+    border: 2px solid @basecolor;
+    color: @basecolor;
+    line-height: 100px;
+    display: block;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 30px 0;
+    width: 400px;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.detail {
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    overflow: auto;
+
+    .conbox {
+        max-width: 1024px;
+        margin: auto;
+        width: 100%;
+    }
+
+    .btns {
+        height: 100px;
+        border: 2px solid @basecolor;
+        overflow: hidden;
+        display: flex;
+        margin-bottom: 30px;
+
+        input {
+            color: @basecolor;
+            line-height: 100px;
+            flex-grow: 1;
+            text-align: left;
+            padding-left: 30px;
+            box-sizing: border-box;
+            font-weight: bold;
+            font-size: 28px;
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        a {
+            line-height: 100px;
+            color: #fff;
+            text-align: center;
+            display: inline-block;
+            width: 200px;
+            font-size: 20px;
+        }
+    }
+
+    .pagebtn {
+        max-width: 1024px;
+        width: 100%;
+        margin: auto;
+
+        .btn:not(:nth-child(3n+3)) {
+            margin-right: 36px;
+        }
+
+        .btn {
+            border: 2px solid @basecolor;
+            margin-bottom: 30px;
+            width: 317px;
+            float: left;
+            padding: 30px;
+            box-sizing: border-box;
+
+            .title {
+                color: #fff;
+                text-align: center;
+                font-size: 14px;
+                font-weight: bold;
+                padding-bottom: 20px;
+            }
+
+            .desc {
+                text-align: center;
+                color: #4b6ead;
+                font-weight: bold;
+                font-size: 14px;
+            }
+        }
+    }
+}

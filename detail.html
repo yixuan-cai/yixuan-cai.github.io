@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Details</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <script src='./js/jquery-1.8.3.min.js'></script>
+</head>
+
+<body class="detail">
+    <div class="fn-clear conbox">
+        <div class="btns">
+            <input type="text" placeholder="SEARCH FOR COUNTRIES">
+            <a href="javascript:;" class="searchbtn">search</a>
+        </div>
+        <div class="fn-clear pagebtn">
+
+        </div>
+    </div>
+    <script src="./js/summary.js"></script>
+    <script>
+        $(function () {
+            var maindatas;
+            fetch('https://api.covid19api.com/summary').then(response => response.json()) 
+                .then(data => {
+                    var data = data;
+
+                   
+                    var confirmed = (data.Global.TotalConfirmed / 1000000).toFixed(1);
+                    var recorvered = (data.Global.TotalRecovered / 1000000).toFixed(1);
+                    var deaths = (data.Global.TotalDeaths / 1000).toFixed(1);
+                    $('.confirmed').html(confirmed + 'M')
+                    $('.recorvered').html(recorvered + 'M')
+                    $('.deaths').html(deaths + 'K')
+                    var mydata = data.Countries;
+                    var condata = mydata.sort(compare('TotalConfirmed'));
+                    var result = condata;
+                    console.log(result);
+                    maindatas = result;
+                    var html = '';
+                    result.forEach(element => {
+                        html += ` <div class="btn">
+                        <p class="title">${element.Country}</p>
+                        <p class="desc">Cases ${element.TotalConfirmed}<br>
+                            Deaths ${element.TotalDeaths}<br>
+                            Recovered ${element.TotalRecovered}<br>
+                            Today's cases ${element.NewConfirmed}<br>
+                            Today's deaths ${element.NewDeaths}<br>
+                        </p>
+                    </div>`
+                    });
+                    $('.pagebtn').html(html)
+
+                }) 
+                .catch(err => alert("Oh, error", err))
+       
+            function compare(property) {
+                return function (a, b) {
+                    var value1 = a[property];
+                    var value2 = b[property];
+                    return value2 - value1;
+                }
+            }
+            $('.searchbtn').on('click', function () {
+                var input = $('input').val();
+                if (input != '') {
+                    console.log(maindatas)
+                    var data = maindatas.filter((val) => {
+                        return val.Country.indexOf(input) > -1
+                    })
+                    var result = data;
+                    var html = '';
+                    result.forEach(element => {
+                        html += ` <div class="btn">
+                            <p class="title">${element.Country}</p>
+                            <p class="desc">Cases ${element.TotalConfirmed}<br>
+                                Deaths ${element.TotalDeaths}<br>
+                                Recovered ${element.TotalRecovered}<br>
+                                Today's cases ${element.NewConfirmed}<br>
+                                Today's deaths ${element.NewDeaths}<br>
+                            </p>
+                            </div>`
+                    });
+                    $('.pagebtn').html(html)
+                }
+
+            })
+        })
+    </script>
+</body>
+
+</html>
